@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taste_app/model/taste_item.dart';
+import 'package:taste_app/model/article.dart';
 import 'package:taste_app/screens/category_screen.dart';
-import 'package:taste_app/screens/item_detail_screen.dart';
-import 'package:taste_app/screens/items_screen.dart';
+import 'package:taste_app/screens/article_detail_screen.dart';
+import 'package:taste_app/screens/article_screen.dart';
 import './data/starter_data.dart';
 
 void main() {
@@ -17,33 +17,38 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late List<TasteItem> _availableItems;
-  var _filterTags = [];
-  List<String> _avaiableTags = [];
+  late List<Article> _availableArticles;
+  final _filterTags = [];
+  final List<String> _avaiableTags = [];
 
   @override
   void initState() {
     super.initState();
-    _availableItems = itemsStarterData;
-    print(_availableItems);
+    _availableArticles = articleStarterData;
+    for (var article in articleStarterData) {
+      for (var tag in article.tags) {
+        if (!_avaiableTags.contains(tag)) {
+          _avaiableTags.add(tag);
+        }
+      }
+    }
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // for (var i = 0; i < _filterTags.length; i++) {
-    //   _availableItems = itemsStarterData
-    //       .where((element) => element.tags.contains(_filterTags[i]))
-    //       .toList();
-    // }
+    for (var i = 0; i < _filterTags.length; i++) {
+      _availableArticles = articleStarterData
+          .where((element) => element.tags.contains(_filterTags[i]))
+          .toList();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    print(_availableItems);
     return MaterialApp(
       title: 'Taste App',
-      home: CategoryScreen(availableItems: _availableItems),
+      home: CategoryScreen(availableArticles: _availableArticles),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
               .copyWith(secondary: Colors.green),
@@ -63,10 +68,10 @@ class _AppState extends State<App> {
               )),
       routes: {
         CategoryScreen.routePath: (context) =>
-            CategoryScreen(availableItems: _availableItems),
-        ItemsScreen.routeName: (context) =>
-            ItemsScreen(availableItems: _availableItems),
-        ItemDetailScreen.routeName: (context) => ItemDetailScreen(),
+            CategoryScreen(availableArticles: _availableArticles),
+        ArticleScreen.routeName: (context) =>
+            ArticleScreen(availableArticles: _availableArticles),
+        ArticleDetailScreen.routeName: (context) => ArticleDetailScreen(),
       },
     );
   }

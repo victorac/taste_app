@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taste_app/model/category.dart';
-import 'package:taste_app/model/taste_item.dart';
+import 'package:taste_app/model/article.dart';
 
-const List<TasteItem> itemsStarterData = [
-  TasteItem(
+const List<Article> articleStarterData = [
+  Article(
     id: 't1',
     title: 'One Piece',
     description:
@@ -26,7 +26,7 @@ Enter Monkey D. Luffy, a 17-year-old boy who defies your standard definition of 
     ],
     categories: ['c1'],
   ),
-  TasteItem(
+  Article(
     id: 't2',
     title: 'The Eminence in Shadow',
     description:
@@ -50,7 +50,7 @@ But instead of dying, Minoru reawakens as Cid, the second child of the noble Kag
     ],
     categories: ['c1'],
   ),
-  TasteItem(
+  Article(
     id: 't3',
     title: 'Bleach: Thousand-Year Blood War',
     description:
@@ -75,7 +75,7 @@ Yhwach launches a two-pronged invasion into both the Soul Society and Hueco Mund
     ],
     categories: ['c1'],
   ),
-  TasteItem(
+  Article(
     id: 't4',
     title: 'Steins;Gate',
     description:
@@ -101,7 +101,7 @@ Due to the novel discovery, Rintarou and his friends find themselves in an ever-
     ],
     categories: ['c1'],
   ),
-  TasteItem(
+  Article(
     id: 't5',
     title: 'Lookism',
     description:

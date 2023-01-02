@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:taste_app/screens/items_screen.dart';
+import 'package:taste_app/screens/article_screen.dart';
 import 'package:taste_app/widgets/category_item.dart';
 
 import '../model/category.dart';
-import '../model/taste_item.dart';
+import '../model/article.dart';
 import '../data/starter_data.dart';
 
 class CategoryScreen extends StatelessWidget {
   static const routePath = '/category';
-  const CategoryScreen({super.key, required this.availableItems});
+  const CategoryScreen({super.key, required this.availableArticles});
 
-  final List<TasteItem> availableItems;
+  final List<Article> availableArticles;
   final List<Object> _availableCategories = categoryStarterData;
 
   @override
   Widget build(BuildContext context) {
-    print(availableItems);
     return Scaffold(
       appBar: AppBar(
         title: Text('Categories', style: Theme.of(context).textTheme.headline6),
@@ -34,7 +33,7 @@ class CategoryScreen extends StatelessWidget {
             Category category = _availableCategories[index] as Category;
             return CategoryItem(
               category: category,
-              tasteItems: availableItems
+              tasteItems: availableArticles
                   .where((element) => element.categories.contains(category.id))
                   .toList(),
             );

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../screens/items_screen.dart';
-import '../model/taste_item.dart';
+import './boxed_title.dart';
+import '../screens/article_screen.dart';
+import '../model/article.dart';
 import '../model/category.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem(
       {super.key, required this.category, required this.tasteItems});
   final Category category;
-  final List<TasteItem> tasteItems;
+  final List<Article> tasteItems;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(ItemsScreen.routeName),
+      onTap: () => Navigator.of(context)
+          .pushNamed(ArticleScreen.routeName, arguments: category.id),
       child: Stack(
         children: [
           ClipRRect(
@@ -45,7 +47,7 @@ class CategoryItem extends StatelessWidget {
               ),
             ),
             alignment: Alignment.bottomLeft,
-            child: Text(category.title),
+            child: BoxedTitle(title: category.title),
           ),
         ],
       ),

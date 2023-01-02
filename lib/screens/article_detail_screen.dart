@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ItemDetailScreen extends StatelessWidget {
+class ArticleDetailScreen extends StatelessWidget {
   static const routeName = '/item-detail';
 
-  const ItemDetailScreen({super.key});
+  const ArticleDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

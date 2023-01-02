@@ -1,4 +1,4 @@
-class TasteItem {
+class Article {
   final String id;
   final String title;
   final String description;
@@ -7,7 +7,7 @@ class TasteItem {
   final Map<String, Object> summaryProperties;
   final List<String> categories;
 
-  const TasteItem({
+  const Article({
     required this.id,
     required this.title,
     required this.description,
