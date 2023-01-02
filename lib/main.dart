@@ -17,25 +17,33 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  List<TasteItem> _availableItems = [];
+  late List<TasteItem> _availableItems;
   var _filterTags = [];
   List<String> _avaiableTags = [];
 
   @override
+  void initState() {
+    super.initState();
+    _availableItems = itemsStarterData;
+    print(_availableItems);
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    for (var i = 0; i < _filterTags.length; i++) {
-      _availableItems = itemsStarterData
-          .where((element) => element.tags.contains(_filterTags[i]))
-          .toList();
-    }
+    // for (var i = 0; i < _filterTags.length; i++) {
+    //   _availableItems = itemsStarterData
+    //       .where((element) => element.tags.contains(_filterTags[i]))
+    //       .toList();
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(_availableItems);
     return MaterialApp(
       title: 'Taste App',
-      home: const CategoryScreen(),
+      home: CategoryScreen(availableItems: _availableItems),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
               .copyWith(secondary: Colors.green),
@@ -54,7 +62,8 @@ class _AppState extends State<App> {
                 ),
               )),
       routes: {
-        CategoryScreen.routePath: (context) => CategoryScreen(),
+        CategoryScreen.routePath: (context) =>
+            CategoryScreen(availableItems: _availableItems),
         ItemsScreen.routeName: (context) =>
             ItemsScreen(availableItems: _availableItems),
         ItemDetailScreen.routeName: (context) => ItemDetailScreen(),
