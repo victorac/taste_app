@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_app/model/article_property.dart';
 import 'package:taste_app/model/category.dart';
 import 'package:taste_app/model/article.dart';
 
@@ -14,9 +15,10 @@ Enter Monkey D. Luffy, a 17-year-old boy who defies your standard definition of 
 [Written by MAL Rewrite] ''',
     imageUrl: 'https://cdn.myanimelist.net/images/anime/6/73245.jpg',
     summaryProperties: {
-      'release date': [Icons.calendar_month, '1999-09-01'],
-      'episodes': [Icons.tv_sharp, 1043],
-      'score': [Icons.bar_chart, 8.68]
+      'release date':
+          ArticleProperty(icon: Icons.calendar_month, value: '1999-09-01'),
+      'episodes': ArticleProperty(icon: Icons.tv_sharp, value: 1043),
+      'score': ArticleProperty(icon: Icons.bar_chart, value: 8.68)
     },
     tags: [
       'Action',
@@ -37,9 +39,10 @@ But instead of dying, Minoru reawakens as Cid, the second child of the noble Kag
 [Written by MAL Rewrite]''',
     imageUrl: 'https://cdn.myanimelist.net/images/anime/1874/121869.jpg',
     summaryProperties: {
-      'release date': [Icons.calendar_month, '2022-10-05'],
-      'episodes': [Icons.tv_sharp, 20],
-      'score': [Icons.bar_chart, 7.87]
+      'release date':
+          ArticleProperty(icon: Icons.calendar_month, value: '2022-10-05'),
+      'episodes': ArticleProperty(icon: Icons.tv_sharp, value: 20),
+      'score': ArticleProperty(icon: Icons.bar_chart, value: 7.87)
     },
     tags: [
       'Action',
@@ -63,9 +66,10 @@ Yhwach launches a two-pronged invasion into both the Soul Society and Hueco Mund
 [Written by MAL Rewrite]''',
     imageUrl: 'https://cdn.myanimelist.net/images/anime/1764/126627.jpg',
     summaryProperties: {
-      'release date': [Icons.calendar_month, '2022-10-11 to 2022-12-27'],
-      'episodes': [Icons.tv_sharp, 13],
-      'score': [Icons.bar_chart, 9.16]
+      'release date': ArticleProperty(
+          icon: Icons.calendar_month, value: '2022-10-11 to 2022-12-27'),
+      'episodes': ArticleProperty(icon: Icons.tv_sharp, value: 13),
+      'score': ArticleProperty(icon: Icons.bar_chart, value: 9.16)
     },
     tags: [
       'Action',
@@ -88,9 +92,10 @@ Due to the novel discovery, Rintarou and his friends find themselves in an ever-
 [Written by MAL Rewrite]''',
     imageUrl: 'https://cdn.myanimelist.net/images/anime/1935/127974.jpg',
     summaryProperties: {
-      'release date': [Icons.calendar_month, '2011-04-06 to 2011-09-14'],
-      'episodes': [Icons.tv_sharp, 24],
-      'score': [Icons.bar_chart, 9.08]
+      'release date': ArticleProperty(
+          icon: Icons.calendar_month, value: '2011-04-06 to 2011-09-14'),
+      'episodes': ArticleProperty(icon: Icons.tv_sharp, value: 24),
+      'score': ArticleProperty(icon: Icons.bar_chart, value: 9.08)
     },
     tags: [
       'Drama',
@@ -114,9 +119,10 @@ Now possessing two extremely different bodies, Hyung Suk must learn to navigate 
 [Written by MAL Rewrite]''',
     imageUrl: 'https://cdn.myanimelist.net/images/manga/2/208866.jpg',
     summaryProperties: {
-      'release date': [Icons.calendar_month, '2014-11-20'],
-      'chapters': [Icons.library_books, 420],
-      'score': [Icons.bar_chart, 7.93]
+      'release date':
+          ArticleProperty(icon: Icons.calendar_month, value: '2014-11-20'),
+      'chapters': ArticleProperty(icon: Icons.library_books, value: 420),
+      'score': ArticleProperty(icon: Icons.bar_chart, value: 7.93)
     },
     tags: [
       'Action',

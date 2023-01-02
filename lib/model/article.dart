@@ -1,10 +1,12 @@
+import 'package:taste_app/model/article_property.dart';
+
 class Article {
   final String id;
   final String title;
   final String description;
   final String imageUrl;
   final List<String> tags;
-  final Map<String, Object> summaryProperties;
+  final Map<String, ArticleProperty> summaryProperties;
   final List<String> categories;
 
   const Article({
