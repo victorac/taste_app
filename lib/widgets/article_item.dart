@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taste_app/model/article_property.dart';
+import 'package:taste_app/screens/article_detail_screen.dart';
 
 import './boxed_title.dart';
 import '../model/article.dart';
@@ -13,8 +13,12 @@ class ArticleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final properties = article.summaryProperties.values.toList();
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(ArticleDetailScreen.routeName, arguments: article);
+      },
       child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(5),
         elevation: 10,
         child: Column(
@@ -47,13 +51,23 @@ class ArticleItem extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Wrap(
+                spacing: 25,
+                runSpacing: 4,
+                direction: Axis.horizontal,
                 children: properties
-                    .map((property) => Row(children: [
-                          Icon(property.icon),
-                          Text('${property.value}'),
-                        ]))
+                    .map((property) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(property.icon),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '${property.value}',
+                            ),
+                          ],
+                        ))
                     .toList(),
               ),
             ),

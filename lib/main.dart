@@ -18,8 +18,9 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late List<Article> _availableArticles;
-  final _filterTags = [];
-  final List<String> _avaiableTags = [];
+  final Set<String> _filterTags = {};
+  final Set<String> _avaiableTags = {};
+  final Set<String> _favorites = {};
 
   @override
   void initState() {
@@ -27,9 +28,7 @@ class _AppState extends State<App> {
     _availableArticles = articleStarterData;
     for (var article in articleStarterData) {
       for (var tag in article.tags) {
-        if (!_avaiableTags.contains(tag)) {
-          _avaiableTags.add(tag);
-        }
+        _avaiableTags.add(tag);
       }
     }
   }
@@ -37,11 +36,27 @@ class _AppState extends State<App> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    for (var i = 0; i < _filterTags.length; i++) {
+    for (String tag in _filterTags) {
       _availableArticles = articleStarterData
-          .where((element) => element.tags.contains(_filterTags[i]))
+          .where((element) => element.tags.contains(tag))
           .toList();
     }
+  }
+
+  void _toggleFavorite(String articleId) {
+    if (_favorites.contains(articleId)) {
+      setState(() {
+        _favorites.remove(articleId);
+      });
+    } else {
+      setState(() {
+        _favorites.add(articleId);
+      });
+    }
+  }
+
+  bool _isFavorite(String articleId) {
+    return _favorites.contains(articleId);
   }
 
   @override
@@ -71,7 +86,10 @@ class _AppState extends State<App> {
             CategoryScreen(availableArticles: _availableArticles),
         ArticleScreen.routeName: (context) =>
             ArticleScreen(availableArticles: _availableArticles),
-        ArticleDetailScreen.routeName: (context) => ArticleDetailScreen(),
+        ArticleDetailScreen.routeName: (context) => ArticleDetailScreen(
+              isFavorite: _isFavorite,
+              toggleFavorite: _toggleFavorite,
+            ),
       },
     );
   }
