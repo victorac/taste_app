@@ -17,7 +17,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late List<Article> _availableArticles;
+  List<Article> _availableArticles = [];
   final Set<String> _filterTags = {'Reincarnation'};
   final Set<String> _avaiableTags = {};
   final Set<String> _favorites = {};
@@ -25,21 +25,14 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    _availableArticles = articleStarterData;
     for (var article in articleStarterData) {
       for (var tag in article.tags) {
         _avaiableTags.add(tag);
       }
     }
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+    _availableArticles.addAll(articleStarterData);
     for (String tag in _filterTags) {
-      _availableArticles = articleStarterData
-          .where((element) => element.tags.contains(tag))
-          .toList();
+      _availableArticles.removeWhere((article) => !article.tags.contains(tag));
     }
   }
 
@@ -59,11 +52,30 @@ class _AppState extends State<App> {
     return _favorites.contains(articleId);
   }
 
-  void _deleteFilter(String filter) {
+  void _updateAvailableArticles() {
+    List<Article> filteredArticles = [];
+    filteredArticles.addAll(articleStarterData);
+
+    for (String tag in _filterTags) {
+      filteredArticles.removeWhere((article) => !article.tags.contains(tag));
+    }
+
     setState(() {
-      _filterTags.remove(filter);
-      _availableArticles = articleStarterData;
+      _availableArticles = filteredArticles;
     });
+  }
+
+  void _toggleFilterTag(String tag) {
+    if (_filterTags.contains(tag)) {
+      setState(() {
+        _filterTags.remove(tag);
+      });
+    } else {
+      setState(() {
+        _filterTags.add(tag);
+      });
+    }
+    _updateAvailableArticles();
   }
 
   @override
@@ -78,7 +90,7 @@ class _AppState extends State<App> {
             .toList(),
         tags: _avaiableTags,
         filteredTags: _filterTags,
-        deleteFilter: _deleteFilter,
+        toggleFilterTag: _toggleFilterTag,
       ),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)

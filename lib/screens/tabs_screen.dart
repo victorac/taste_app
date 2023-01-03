@@ -13,14 +13,14 @@ class TabsScreen extends StatefulWidget {
     required this.favoriteArticles,
     required this.tags,
     required this.filteredTags,
-    required this.deleteFilter,
+    required this.toggleFilterTag,
   });
 
   final List<Article> availableArticles;
   final List<Article> favoriteArticles;
   final Set<String> tags;
   final Set<String> filteredTags;
-  final Function deleteFilter;
+  final Function toggleFilterTag;
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -52,7 +52,7 @@ class _TabsScreenState extends State<TabsScreen> {
       drawer: FilterDrawer(
         tags: widget.tags,
         filteredTags: widget.filteredTags,
-        deleteFilter: widget.deleteFilter,
+        toggleFilterTag: widget.toggleFilterTag,
       ),
       body: pages[_selectedPage].widget,
       bottomNavigationBar: BottomNavigationBar(
