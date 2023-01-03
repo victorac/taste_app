@@ -44,12 +44,17 @@ class _SearchTagState extends State<SearchTag> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter a search term',
+            child: Focus(
+              onFocusChange: (value) => setState(() {
+                tagsFound = [];
+              }),
+              child: TextField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter a search term',
+                ),
+                onChanged: (value) => _updateTags(value),
               ),
-              onChanged: (value) => _updateTags(value),
             ),
           ),
           Wrap(

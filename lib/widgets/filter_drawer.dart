@@ -17,11 +17,8 @@ class FilterDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),
-        child: Column(
+        child: ListView(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).padding.top,
-            ),
             Container(
               height: 50,
               width: double.infinity,
@@ -37,13 +34,17 @@ class FilterDrawer extends StatelessWidget {
               tags: tags,
               toggleFilterTag: toggleFilterTag,
             ),
-            Wrap(
-              children: filteredTags
-                  .map((e) => Chip(
-                        label: Text(e),
-                        onDeleted: () => toggleFilterTag(e),
-                      ))
-                  .toList(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 5,
+                children: filteredTags
+                    .map((e) => Chip(
+                          label: Text(e),
+                          onDeleted: () => toggleFilterTag(e),
+                        ))
+                    .toList(),
+              ),
             )
           ],
         ));

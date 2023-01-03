@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:taste_app/widgets/article_item.dart';
+
+import '../widgets/filter_drawer.dart';
+import '../widgets/article_item.dart';
 import '../model/article.dart';
 
 class ArticleScreen extends StatelessWidget {
   static const routeName = '/articles';
 
-  const ArticleScreen({super.key, required this.availableArticles});
+  const ArticleScreen({
+    super.key,
+    required this.availableArticles,
+    required this.tags,
+    required this.filteredTags,
+    required this.toggleFilterTag,
+  });
 
   final List<Article> availableArticles;
+  final Set<String> tags;
+  final Set<String> filteredTags;
+  final Function toggleFilterTag;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +34,11 @@ class ArticleScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('$categoryTitle'),
+      ),
+      endDrawer: FilterDrawer(
+        tags: tags,
+        filteredTags: filteredTags,
+        toggleFilterTag: toggleFilterTag,
       ),
       body: ListView.builder(
         itemCount: categoryArticles.length,

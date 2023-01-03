@@ -110,8 +110,12 @@ class _AppState extends State<App> {
                 ),
               )),
       routes: {
-        ArticleScreen.routeName: (context) =>
-            ArticleScreen(availableArticles: _availableArticles),
+        ArticleScreen.routeName: (context) => ArticleScreen(
+              availableArticles: _availableArticles,
+              filteredTags: _filterTags,
+              tags: _avaiableTags,
+              toggleFilterTag: _toggleFilterTag,
+            ),
         ArticleDetailScreen.routeName: (context) => ArticleDetailScreen(
               isFavorite: _isFavorite,
               toggleFavorite: _toggleFavorite,
