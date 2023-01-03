@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taste_app/model/article.dart';
-import 'package:taste_app/screens/category_screen.dart';
-import 'package:taste_app/screens/article_detail_screen.dart';
-import 'package:taste_app/screens/article_screen.dart';
+import 'model/article.dart';
+import 'screens/article_detail_screen.dart';
+import 'screens/article_screen.dart';
+import 'screens/tabs_screen.dart';
 import './data/starter_data.dart';
 
 void main() {
@@ -63,7 +63,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Taste App',
-      home: CategoryScreen(availableArticles: _availableArticles),
+      home: TabsScreen(
+          availableArticles: _availableArticles,
+          favoriteArticles: _favorites
+              .map((id) =>
+                  articleStarterData.firstWhere((element) => element.id == id))
+              .toList()),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
               .copyWith(secondary: Colors.green),
@@ -82,8 +87,6 @@ class _AppState extends State<App> {
                 ),
               )),
       routes: {
-        CategoryScreen.routePath: (context) =>
-            CategoryScreen(availableArticles: _availableArticles),
         ArticleScreen.routeName: (context) =>
             ArticleScreen(availableArticles: _availableArticles),
         ArticleDetailScreen.routeName: (context) => ArticleDetailScreen(
