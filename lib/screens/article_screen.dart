@@ -11,7 +11,10 @@ class ArticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryId = ModalRoute.of(context)!.settings.arguments;
+    final Map<String, String> routeArgs =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    final categoryId = routeArgs['id'];
+    final categoryTitle = routeArgs['title'];
     final categoryArticles = availableArticles
         .where(
           (element) => element.categories.contains(categoryId),
@@ -19,7 +22,7 @@ class ArticleScreen extends StatelessWidget {
         .toList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Articles'),
+        title: Text('$categoryTitle'),
       ),
       body: ListView.builder(
         itemCount: categoryArticles.length,

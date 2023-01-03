@@ -137,27 +137,27 @@ Now possessing two extremely different bodies, Hyung Suk must learn to navigate 
 const List<Category> categoryStarterData = [
   Category(
     id: 'c1',
-    title: 'Anime',
+    title: 'Animes',
     color: Colors.red,
   ),
   Category(
     id: 'c2',
-    title: 'WebToon',
+    title: 'WebToons',
     color: Colors.purple,
   ),
   Category(
     id: 'c3',
-    title: 'Game',
+    title: 'Games',
     color: Colors.blue,
   ),
   Category(
     id: 'c4',
-    title: 'Manga',
+    title: 'Mangas',
     color: Colors.cyan,
   ),
   Category(
     id: 'c5',
-    title: 'Movie',
+    title: 'Movies',
     color: Colors.orange,
   ),
   Category(
@@ -167,7 +167,7 @@ const List<Category> categoryStarterData = [
   ),
   Category(
     id: 'c8',
-    title: 'Book',
+    title: 'Books',
     color: Colors.green,
   )
 ];

@@ -14,8 +14,11 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed(ArticleScreen.routeName, arguments: category.id),
+      onTap: () =>
+          Navigator.of(context).pushNamed(ArticleScreen.routeName, arguments: {
+        'title': category.title,
+        'id': category.id,
+      }),
       child: Stack(
         children: [
           ClipRRect(
