@@ -46,7 +46,7 @@ class ArticleDetailScreen extends StatelessWidget {
                     .toList(),
               ),
               const SizedBox(
-                height: 30,
+                height: 100,
               ),
             ],
           ),
