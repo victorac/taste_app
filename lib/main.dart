@@ -18,7 +18,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late List<Article> _availableArticles;
-  final Set<String> _filterTags = {};
+  final Set<String> _filterTags = {'Reincarnation'};
   final Set<String> _avaiableTags = {};
   final Set<String> _favorites = {};
 
@@ -59,16 +59,27 @@ class _AppState extends State<App> {
     return _favorites.contains(articleId);
   }
 
+  void _deleteFilter(String filter) {
+    setState(() {
+      _filterTags.remove(filter);
+      _availableArticles = articleStarterData;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Taste App',
       home: TabsScreen(
-          availableArticles: _availableArticles,
-          favoriteArticles: _favorites
-              .map((id) =>
-                  articleStarterData.firstWhere((element) => element.id == id))
-              .toList()),
+        availableArticles: _availableArticles,
+        favoriteArticles: _favorites
+            .map((id) =>
+                articleStarterData.firstWhere((element) => element.id == id))
+            .toList(),
+        tags: _avaiableTags,
+        filteredTags: _filterTags,
+        deleteFilter: _deleteFilter,
+      ),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
               .copyWith(secondary: Colors.green),
